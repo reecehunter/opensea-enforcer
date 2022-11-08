@@ -13,18 +13,18 @@ import {Ownable} from "openzeppelin-contracts/access/Ownable.sol";
  *         the msg.sender (operator) is allowed by the OperatorFilterRegistry.
  */
 abstract contract ExampleERC721 is ERC721("Example", "EXAMPLE"), DefaultOperatorFilterer721, Ownable {
-    function transferFrom(address from, address to, uint256 tokenId) public override onlyAllowedOperator(from) {
+    function transferFrom(address from, address to, uint256 tokenId) public override onlyAllowedOperator {
         super.transferFrom(from, to, tokenId);
     }
 
-    function safeTransferFrom(address from, address to, uint256 tokenId) public override onlyAllowedOperator(from) {
+    function safeTransferFrom(address from, address to, uint256 tokenId) public override onlyAllowedOperator {
         super.safeTransferFrom(from, to, tokenId);
     }
 
     function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data)
         public
         override
-        onlyAllowedOperator(from)
+        onlyAllowedOperator
     {
         super.safeTransferFrom(from, to, tokenId, data);
     }
